@@ -1,5 +1,5 @@
 {
-  "name": "lazy-logger",
+  "name": "@mter/lazy-logger",
   "version": "0.0.1",
   "description": "simple console logger insterface to improve performance by lazy string evaluation",
   "main": "lib/index.js",
@@ -8,9 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run build",
-    "build:prod": "tsc",
-    "test": "mocha"
+    "test": "nyc mocha test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +20,7 @@
     "js",
     "node"
   ],
-  "author": "upekshejay",
+  "author": "upekshejay (upekshejay@gmail.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Upekshe/lazy-logger/issues"
@@ -31,7 +29,13 @@
   "devDependencies": {
     "@types/node": "^18.11.13",
     "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
     "sinon": "^15.0.0",
     "typescript": "^4.9.4"
-  }
+  },
+  "private": false,
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "engineStrict": true
 }
