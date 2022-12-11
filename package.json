@@ -1,0 +1,30 @@
+{
+  "name": "lazy-logger",
+  "version": "0.0.1",
+  "description": "simple console logger insterface to improve performance by lazy string evaluation",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Upekshe/lazy-logger.git"
+  },
+  "keywords": [
+    "logger",
+    "js",
+    "node"
+  ],
+  "author": "upekshejay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Upekshe/lazy-logger/issues"
+  },
+  "homepage": "https://github.com/Upekshe/lazy-logger#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}

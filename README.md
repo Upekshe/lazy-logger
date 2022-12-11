@@ -1,2 +1,3 @@
 # lazy-logger
-simple logging interface to speed up code by
+
+Simple console logger to improve performance with lazy string evaluation.
