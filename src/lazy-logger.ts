@@ -38,7 +38,6 @@ class LazyLogger implements LazyLoggerInterface {
 
     private log(level: number, provider: (level?: LEVEL) => any[] = (level) => []): void {
         if (level < LOG_LEVEL) { return; }
-        // avoid evaluation the provider if log level is less than system log level
         console.log(...provider(level));
     }
 
