@@ -1,4 +1,7 @@
 node_modules
 src
 test
-package.json
+.github
+.nyc_output
+*.tgz
+tsconfig.json
