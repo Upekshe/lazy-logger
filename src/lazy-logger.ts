@@ -8,8 +8,9 @@
  */
 
 import { LazyLoggerInterface, LEVEL } from "./lazy-logger-interface";
-let LOG_LEVEL = process.env._LOG_LEVEL == null ? LEVEL.TRACE : process.env._LOG_LEVEL;
 
+const DEFAULT_LOG_LEVEL = process.env._LOG_LEVEL == null ? LEVEL.TRACE : process.env._LOG_LEVEL;
+let LOG_LEVEL = DEFAULT_LOG_LEVEL;
 class LazyLogger implements LazyLoggerInterface {
 
     public setLogLevel(level: LEVEL): void {
