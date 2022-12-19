@@ -32,7 +32,3 @@ export interface LazyLoggerInterface {
 
     severe(provider: (level?: LEVEL) => any[]): void;
 }
-
-export interface Configuration {
-
-}
