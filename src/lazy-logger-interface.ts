@@ -18,6 +18,8 @@ export enum LEVEL {
 
 export interface LazyLoggerInterface {
 
+    setLogLevel(level: LEVEL): void;
+
     trace(provider: (level?: LEVEL) => any[]): void;
 
     debug(provider: (level?: LEVEL) => any[]): void;

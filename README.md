@@ -48,3 +48,14 @@ LOGGER.info((loglevel) => {
 });
 
 ```
+
+### Set log level programatically
+
+```
+import { LOGGER, LEVEL } from "@mtr/lazy-logger"
+
+...
+
+LOGGER.setLogLevel(LEVEL.DEBUG); 
+
+```
