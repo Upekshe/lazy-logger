@@ -6,7 +6,7 @@ Simple console logger to improve performance with lazy string evaluation.
 
 ### Control the logging with levels
 
-```
+``` typescript
 
 /**
  * the log level is taken from the env variable "_LOG_LEVEL"
@@ -34,7 +34,7 @@ LOGGER.trace(()=>"This is my log message") // print nothing
 
 ### Change what's printed depending on the current log level
 
-```
+``` typescript
 
 LOGGER.info((loglevel) => {
   if (loglevel < LEVEL.INFO)
@@ -51,11 +51,22 @@ LOGGER.info((loglevel) => {
 
 ### Set log level programatically
 
-```
+``` typescript
 import { LOGGER, LEVEL } from "@mtr/lazy-logger"
 
 ...
 
 LOGGER.setLogLevel(LEVEL.DEBUG); 
+
+```
+
+### Check is a given log level is loggable with current logger configuration
+
+``` typescript
+import { LOGGER, LEVEL } from "@mtr/lazy-logger"
+
+...
+// check if DEBUG logs are loggable. If the current log level is higher than DEBUG. this will return false;
+const isDebugLoggable: boolean = LOGGER.isLogLevelLoggable(LEVEL.DEBUG); 
 
 ```
