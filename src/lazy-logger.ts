@@ -20,6 +20,10 @@ class LazyLogger implements LazyLoggerInterface {
         LOG_LEVEL = level;
     }
 
+    public isLogLevelLoggable(level: LEVEL): boolean {
+        return level >= LOG_LEVEL;
+    }
+
     public trace(provider: (level?: LEVEL) => any[]): void {
         this.log(LEVEL.TRACE, provider);
     }
@@ -45,7 +49,7 @@ class LazyLogger implements LazyLoggerInterface {
     }
 
     private log(level: number, provider: (level?: LEVEL) => any[] = (level) => []): void {
-        if (level < LOG_LEVEL) { return; }
+        if (this.isLogLevelLoggable(level) !== true) { return; }
         console.log(...provider(level));
     }
 
