@@ -1,6 +1,6 @@
 {
   "name": "@mter/lazy-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "simple console logger insterface to improve performance by lazy string evaluation",
   "main": "lib/index.js",
   "directories": {
