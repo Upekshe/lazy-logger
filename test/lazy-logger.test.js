@@ -1,18 +1,26 @@
 process.env._LOG_LEVEL = 20;
 
 const assert = require("assert");
+const { after } = require("mocha");
 const { LOGGER, LEVEL } = require("../lib");
-const sinon = require("sinon");
 
 describe("Lazy logger", function () {
+  const sinon = require("sinon");
   let spy;
 
   before(() => {
+    console.info("Test start");
     spy = sinon.spy(console, "log");
+  });
+
+  after(() => {
+    spy.restore();
+    console.info("All tests complete");
   });
 
   afterEach(() => {
     spy.resetHistory();
+    console.info("test complete");
   });
 
   it("should log only messages with higher or equal level than INFO messages", function () {
@@ -43,15 +51,25 @@ describe("Lazy logger", function () {
     assert.equal(spy.callCount, 3);
   });
 
-  it("shouid throw error if set a log level less than zero", () => {
+  it("should throw error if set a log level less than zero", () => {
     assert.throws(() => {
       LOGGER.setLogLevel(-1);
     }, "Should throw error `Invalid log level`");
   });
 
-  it("shouid throw error if set a log level greater than SEVERE", () => {
+  it("should throw error if set a log level greater than SEVERE", () => {
     assert.throws(() => {
       LOGGER.setLogLevel(LEVEL.SEVERE + 1);
     }, "Should throw error `Invalid log level`");
+  });
+
+  it("should return TRUE when try INFO when current log level is DEBUG", () => {
+    LOGGER.setLogLevel(LEVEL.DEBUG);
+    assert.equal(LOGGER.isLogLevelLoggable(LEVEL.INFO), true);
+  });
+
+  it("should return FALSE when try INFO when current log level is WARN", () => {
+    LOGGER.setLogLevel(LEVEL.WARN);
+    assert.equal(LOGGER.isLogLevelLoggable(LEVEL.INFO), false);
   });
 });
