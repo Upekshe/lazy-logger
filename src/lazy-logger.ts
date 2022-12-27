@@ -33,7 +33,7 @@ class LazyLogger implements LazyLoggerInterface {
         return level >= LOG_LEVEL;
     }
 
-    public enablePreAmendLogLevel(enable: boolean): void {
+    public enablePreAmendingLogLevel(enable: boolean): void {
         PRE_AMEND_LOG_LEVEL = enable === true;
     }
 
@@ -71,8 +71,6 @@ class LazyLogger implements LazyLoggerInterface {
         if (PRE_AMEND_LOG_LEVEL === true) { list.push(`[${this.logLevelNameMapping[level] ?? 'CUSTOM'}]`) }
         return list
     }
-
-
 
 }
 

@@ -9,18 +9,19 @@ describe("Lazy logger", function () {
   let spy;
 
   before(() => {
-    console.info("Test start");
+    console.info("========== Test Start ==========");
     spy = sinon.spy(console, "log");
   });
 
   after(() => {
     spy.restore();
-    console.info("All tests complete");
+    console.info("========== All Tests Complete ==========");
   });
 
   afterEach(() => {
+    LOGGER.setLogLevel(LEVEL.TRACE);
     spy.resetHistory();
-    console.info("test complete");
+    console.info("========== Test Complete ==========");
   });
 
   it("should log only messages with higher or equal level than INFO messages", function () {
@@ -71,5 +72,34 @@ describe("Lazy logger", function () {
   it("should return FALSE when try INFO when current log level is WARN", () => {
     LOGGER.setLogLevel(LEVEL.WARN);
     assert.equal(LOGGER.isLogLevelLoggable(LEVEL.INFO), false);
+  });
+
+  it("should amend the log level to the message as a prefix, if setting is enabled", () => {
+    LOGGER.setLogLevel(LEVEL.INFO);
+    LOGGER.enablePreAmendingLogLevel(true);
+    LOGGER.info(() => ["message should be pre amended with INFO"]);
+    assert(spy.calledOnce);
+    assert(
+      spy.calledOnceWithExactly(
+        "[INFO]",
+        "message should be pre amended with INFO"
+      )
+    );
+  });
+
+  it("should not amend the log level to the message as a prefix, if setting is not enabled", () => {
+    LOGGER.setLogLevel(LEVEL.INFO);
+    LOGGER.enablePreAmendingLogLevel(false);
+    LOGGER.info(() => ["message should NOT be pre amended with INFO"]);
+    assert(spy.calledOnce);
+    assert(
+      spy.neverCalledWithMatch(
+        "[INFO]",
+        "message should NOT be pre amended with INFO"
+      )
+    );
+    assert(
+      spy.calledOnceWithExactly("message should NOT be pre amended with INFO")
+    );
   });
 });
