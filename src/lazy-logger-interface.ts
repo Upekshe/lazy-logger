@@ -22,6 +22,8 @@ export interface LazyLoggerInterface {
 
     isLogLevelLoggable(level: LEVEL): boolean;
 
+    enablePreAmendingLogLevel(enable: boolean): void;
+
     trace(provider: (level?: LEVEL) => any[]): void;
 
     debug(provider: (level?: LEVEL) => any[]): void;

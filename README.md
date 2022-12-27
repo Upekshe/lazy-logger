@@ -70,3 +70,17 @@ import { LOGGER, LEVEL } from "@mtr/lazy-logger"
 const isDebugLoggable: boolean = LOGGER.isLogLevelLoggable(LEVEL.DEBUG); 
 
 ```
+
+### Amend log level to the log line.
+
+``` typescript
+import { LOGGER, LEVEL } from "@mtr/lazy-logger"
+
+...
+LOGGER.enablePreAmendingLogLevel(true);
+
+...
+
+LOGGER.INFO(()=>["your log message"]); // will print "[INFO] your log message"
+
+```
